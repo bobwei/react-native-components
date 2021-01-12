@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
@@ -8,10 +8,7 @@ import Home from './src/screens/Home';
 
 const Stack = createStackNavigator();
 
-const Comp = () => {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+const Screens = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -21,4 +18,19 @@ const Comp = () => {
   );
 };
 
-export default Comp;
+const App = () => {
+  const [isInit, setIsInit] = useState(false);
+  useEffect(() => {
+    setIsInit(true);
+    SplashScreen.hide();
+  }, []);
+  if (!isInit) {
+    return null;
+  }
+  // prettier-ignore
+  return (
+    <Screens />
+  );
+};
+
+export default App;
