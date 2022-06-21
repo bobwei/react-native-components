@@ -6,4 +6,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
+  count: {
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    margin: 20,
+  },
 });
