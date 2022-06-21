@@ -6,8 +6,4 @@ export default StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
-  button: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
 });

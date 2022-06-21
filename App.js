@@ -13,6 +13,8 @@ const Screens = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Page1" component={require('./src/screens/Page1').default} />
+        <Stack.Screen name="Page2" component={require('./src/screens/Page2').default} />
       </Stack.Navigator>
     </NavigationContainer>
   );
