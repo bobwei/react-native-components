@@ -23,7 +23,6 @@ const Comp = () => {
           onLoad={(response) => {
             const { width, height } = response.naturalSize;
             const videoHeight = height * (screenWidth / width);
-            response.naturalSize.orientation = 'horizontal';
             setHeightScaled(videoHeight);
           }}
         />
