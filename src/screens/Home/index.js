@@ -19,6 +19,12 @@ const Comp = ({ navigation }) => {
         style={styles.button}
         onPress={() => navigation.navigate('Page2')}
       />
+      <Button
+        title="Go to Page3"
+        type="solid"
+        style={styles.button}
+        onPress={() => navigation.navigate('Page3')}
+      />
     </View>
   );
 };
