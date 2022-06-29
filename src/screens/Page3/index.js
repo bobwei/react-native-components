@@ -28,7 +28,7 @@ const Comp = () => {
         style={styles.button}
         type="solid"
         onPress={() => setIsPlaying((v) => !v)}
-        title={isPlaying ? 'Stop' : 'Play'}
+        title={isPlaying ? 'Pause' : 'Play'}
       />
     </View>
   );
