@@ -13,7 +13,6 @@ export default StyleSheet.create({
     right: 0,
   },
   button: {
-    marginTop: 10,
-    marginBottom: 10,
+    margin: 10,
   },
 });
