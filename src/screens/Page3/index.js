@@ -8,23 +8,20 @@ import video from './test_video.mp4';
 
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [heightScaled, setHeightScaled] = useState(null);
-  const screenWidth = Dimensions.get('window').width;
-
+  const { width: screenWidth } = Dimensions.get('window');
+  const [videoSize, setVideoSize] = useState({
+    width: screenWidth,
+    height: (screenWidth * 9) / 16,
+  });
   return (
     <View style={styles.container}>
-      <View style={{ height: heightScaled }}>
+      <View style={videoSize}>
         <Video
           source={video}
           paused={!isPlaying}
           style={styles.videoStyle}
-          repeat={true}
           resizeMode="contain"
-          onLoad={(response) => {
-            const { width, height } = response.naturalSize;
-            const videoHeight = height * (screenWidth / width);
-            setHeightScaled(videoHeight);
-          }}
+          controls
         />
       </View>
       <Button
