@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 
 import styles from './styles';
 import video from './test_video.mp4';
+import CountDown from './CountDown';
 
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,6 +14,7 @@ const Comp = () => {
     width: screenWidth,
     height: (screenWidth * 9) / 16,
   });
+  const [countDown, setCountDown] = useState(null);
   return (
     <View style={styles.container}>
       <View style={videoSize}>
@@ -21,8 +23,23 @@ const Comp = () => {
           paused={!isPlaying}
           style={styles.videoStyle}
           resizeMode="contain"
+          onEnd={() => {
+            setCountDown(
+              <CountDown
+                duration={5}
+                onComplete={() => {
+                  alert("time's up");
+                }}
+                onCancel={() => {
+                  setCountDown(null);
+                  alert("it's canceled");
+                }}
+              />,
+            );
+          }}
           controls
         />
+        {countDown !== null && <View style={styles.countDown}>{countDown}</View>}
       </View>
       <Button
         style={styles.button}
