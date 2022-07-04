@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import Video from 'react-native-video';
-import { View, Dimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import styles from './styles';
 import video from './test_video.mp4';
-import CountDown from './CountDown';
+import CountDown from '../../components/CountDown';
 
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const { width: screenWidth } = Dimensions.get('window');
-  const [videoSize, setVideoSize] = useState({
-    width: screenWidth,
-    height: (screenWidth * 9) / 16,
-  });
-  const [countDown, setCountDown] = useState(null);
+  const [isCountDownVisible, setIsCountDownVisible] = useState(false);
+  const dimensions = useWindowDimensions();
+  const videoSize = {
+    width: dimensions.width,
+    height: (dimensions.width * 9) / 16,
+  };
+  const nextVideo = {
+    url: 'https://www.youtube.com/watch?v=tBEc9Kni6I0',
+    duration: 226,
+    title: 'AMAZING SALSA Dance With Most Beautiful Sunset View!',
+    artist: 'Plesni Centar Mimbao',
+    artwork: 'https://i.ytimg.com/vi_webp/tBEc9Kni6I0/maxresdefault.webp',
+  };
   return (
     <View style={styles.container}>
       <View style={videoSize}>
@@ -23,23 +30,14 @@ const Comp = () => {
           paused={!isPlaying}
           style={styles.videoStyle}
           resizeMode="contain"
-          onEnd={() => {
-            setCountDown(
-              <CountDown
-                duration={5}
-                onComplete={() => {
-                  alert("time's up");
-                }}
-                onCancel={() => {
-                  setCountDown(null);
-                  alert("it's canceled");
-                }}
-              />,
-            );
-          }}
           controls
+          onEnd={() => {
+            setIsCountDownVisible(true);
+          }}
         />
-        {countDown !== null && <View style={styles.countDown}>{countDown}</View>}
+        {isCountDownVisible && (
+          <CountDown duration={5} nextVideo={nextVideo} onNext={() => {}} onCancel={() => {}} />
+        )}
       </View>
       <Button
         style={styles.button}
