@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Video from 'react-native-video';
-import { View, useWindowDimensions } from 'react-native';
+import { AppState, View, useWindowDimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import styles from './styles';
@@ -10,6 +10,8 @@ import CountDown from '../../components/CountDown';
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isCountDownVisible, setIsCountDownVisible] = useState(false);
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const dimensions = useWindowDimensions();
   const videoSize = {
     width: dimensions.width,
@@ -22,6 +24,15 @@ const Comp = () => {
     artist: 'Plesni Centar Mimbao',
     artwork: 'https://i.ytimg.com/vi_webp/tBEc9Kni6I0/maxresdefault.webp',
   };
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+    });
+    return () => subscription.remove();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={videoSize}>
@@ -31,8 +42,10 @@ const Comp = () => {
           style={styles.videoStyle}
           resizeMode="contain"
           controls
+          playWhenInactive
+          ignoreSilentSwitch="ignore"
           onEnd={() => {
-            setIsCountDownVisible(true);
+            appStateVisible === 'active' && setIsCountDownVisible(true);
           }}
         />
         {isCountDownVisible && (
