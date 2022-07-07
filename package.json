@@ -27,7 +27,7 @@
     "react-native-screens": "^3.13.1",
     "react-native-splash-screen": "^3.3.0",
     "react-native-vector-icons": "^9.1.0",
-    "react-native-video": "^5.2.0",
+    "react-native-video": "https://github.com/bobwei/react-native-video#03e4e2807731998fab92087805491d4ddc1cb587",
     "react-native-webview": "^11.22.2"
   },
   "devDependencies": {
