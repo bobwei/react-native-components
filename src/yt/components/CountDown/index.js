@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, Image } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import styles from './styles';
 import CustomButton from './components/CustomButton';
@@ -9,6 +10,7 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
   const timerRef = useRef();
   const minutes = Math.floor(nextVideo.duration / 60);
   const seconds = nextVideo.duration - minutes * 60;
+  const { t } = useTranslation();
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
@@ -25,7 +27,7 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.textNormal, { margin: 10 }]}>
-        <Text>Up next in </Text>
+        <Text>{t('Up next in')}</Text>
         <Text style={styles.textStrong}>{count}</Text>
       </Text>
       <View style={styles.infoContainer}>
@@ -47,13 +49,13 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
       <View style={styles.buttonContainer}>
         <CustomButton
           backgroundColor="#191919"
-          title="CANCEL"
+          title={t('CANCEL')}
           onPress={() => {
             clearInterval(timerRef.current);
             onCancel && onCancel();
           }}
         />
-        <CustomButton backgroundColor="#414141" title="PLAY NOW" />
+        <CustomButton backgroundColor="#414141" title={t('PLAY NOW')} />
       </View>
     </View>
   );
