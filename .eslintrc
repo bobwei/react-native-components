@@ -8,6 +8,7 @@
   },
   "rules": {
     "react-native/no-inline-styles": 0,
+    "no-alert": 0,
     "import/no-extraneous-dependencies": 0,
     "react/function-component-definition": 0,
     "no-restricted-syntax": 0,

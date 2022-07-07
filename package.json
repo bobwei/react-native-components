@@ -1,7 +1,6 @@
 {
   "name": "@bobwei/react-native-components",
-  "version": "0.0.1",
-  "private": true,
+  "version": "3.0.0",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
