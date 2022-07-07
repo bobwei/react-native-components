@@ -4,7 +4,7 @@ import { AppState, View, useWindowDimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import styles from './styles';
-import CountDown from '../../components/CountDown';
+import CountDown from '../../yt/components/CountDown';
 
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(true);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Button } from 'react-native-elements';
 
 import styles from './styles';
+import CustomButton from './components/CustomButton';
 
 const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
   const [count, setCount] = useState(duration);
@@ -58,19 +58,5 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
     </View>
   );
 };
-
-function CustomButton({ backgroundColor, title, onPress }) {
-  return (
-    <Button
-      buttonStyle={{ backgroundColor }}
-      containerStyle={{ width: '48%' }}
-      title={title}
-      titleStyle={{ fontWeight: '600', fontSize: 15 }}
-      onPress={() => {
-        onPress && onPress();
-      }}
-    />
-  );
-}
 
 export default Comp;
