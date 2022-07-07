@@ -27,7 +27,7 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.textNormal, { margin: 10 }]}>
-        <Text>{t('Up next in')}</Text>
+        <Text>{t('up next in')}</Text>
         <Text style={styles.textStrong}>{count}</Text>
       </Text>
       <View style={styles.infoContainer}>
@@ -49,13 +49,13 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
       <View style={styles.buttonContainer}>
         <CustomButton
           backgroundColor="#191919"
-          title={t('CANCEL')}
+          title={t('cancel')}
           onPress={() => {
             clearInterval(timerRef.current);
             onCancel && onCancel();
           }}
         />
-        <CustomButton backgroundColor="#414141" title={t('PLAY NOW')} />
+        <CustomButton backgroundColor="#414141" title={t('play now')} />
       </View>
     </View>
   );
