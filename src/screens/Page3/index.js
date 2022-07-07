@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Video from 'react-native-video';
 import { AppState, View, useWindowDimensions } from 'react-native';
 import { Button } from 'react-native-elements';
@@ -9,8 +9,7 @@ import CountDown from '../../yt/components/CountDown';
 const Comp = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isCountDownVisible, setIsCountDownVisible] = useState(false);
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const [countDownDuration, setCountDownDuration] = useState(5);
   const dimensions = useWindowDimensions();
   const videoSize = {
     width: dimensions.width,
@@ -26,8 +25,7 @@ const Comp = () => {
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', (nextAppState) => {
-      appState.current = nextAppState;
-      setAppStateVisible(appState.current);
+      setCountDownDuration(nextAppState === 'active' ? 5 : 0);
     });
     return () => subscription.remove();
   }, []);
@@ -43,17 +41,26 @@ const Comp = () => {
           style={styles.videoStyle}
           resizeMode="contain"
           controls
+          playInBackground
           playWhenInactive
+          pictureInPicture={false}
           ignoreSilentSwitch="ignore"
           onEnd={() => {
-            appStateVisible === 'active' && setIsCountDownVisible(true);
+            setIsCountDownVisible(true);
           }}
           onError={(error) => {
             alert(JSON.stringify(error));
           }}
         />
         {isCountDownVisible && (
-          <CountDown duration={5} nextVideo={nextVideo} onNext={() => {}} onCancel={() => {}} />
+          <CountDown
+            duration={countDownDuration}
+            nextVideo={nextVideo}
+            onNext={() => {
+              console.log('next video');
+            }}
+            onCancel={() => {}}
+          />
         )}
       </View>
       <Button
