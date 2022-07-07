@@ -4,11 +4,10 @@ import { View, useWindowDimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import styles from './styles';
-import video from './test_video.mp4';
 import CountDown from '../../components/CountDown';
 
 const Comp = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isCountDownVisible, setIsCountDownVisible] = useState(false);
   const dimensions = useWindowDimensions();
   const videoSize = {
@@ -19,13 +18,18 @@ const Comp = () => {
     <View style={styles.container}>
       <View style={videoSize}>
         <Video
-          source={video}
+          source={{
+            uri: 'https://tubebrowserpro.com/videos/tBEc9Kni6I0.mp4',
+          }}
           paused={!isPlaying}
           style={styles.videoStyle}
           resizeMode="contain"
           controls
           onEnd={() => {
             setIsCountDownVisible(true);
+          }}
+          onError={(error) => {
+            alert(JSON.stringify(error));
           }}
         />
         {isCountDownVisible && (
