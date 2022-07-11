@@ -28,7 +28,7 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
     <View style={styles.container}>
       <Text style={[styles.textNormal, { margin: 10 }]}>
         <Text>{t('up next in')}</Text>
-        <Text style={styles.textStrong}>{count}</Text>
+        <Text style={styles.textStrong}> {count}</Text>
       </Text>
       <View style={styles.infoContainer}>
         <View style={styles.infoSubContainer}>
