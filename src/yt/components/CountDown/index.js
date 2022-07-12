@@ -55,7 +55,13 @@ const Comp = ({ duration = 5, nextVideo, onNext, onCancel }) => {
             onCancel && onCancel();
           }}
         />
-        <CustomButton backgroundColor="#414141" title={t('play now')} />
+        <CustomButton
+          backgroundColor="#414141"
+          title={t('play now')}
+          onPress={() => {
+            onNext && onNext();
+          }}
+        />
       </View>
     </View>
   );
