@@ -3,20 +3,15 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    flex: 1,
+    justifyContent: 'center',
   },
   infoContainer: {
-    flex: 1,
     flexDirection: 'row',
   },
   infoSubContainer: {
     flex: 1,
-    width: '100%',
-    height: '56.25%',
+    aspectRatio: 16 / 9,
     margin: 10,
     marginTop: 20,
   },
@@ -37,13 +32,11 @@ export default StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    position: 'absolute',
-    right: 5,
-    left: 5,
-    bottom: 10,
   },
   textNormal: {
     fontSize: 15,
+    lineHeight: 20,
+    marginBottom: 5,
     fontWeight: '200',
     color: '#fff',
   },
